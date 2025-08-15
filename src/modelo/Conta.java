@@ -22,6 +22,12 @@ public class Conta {
     this.chavepiks = chave;
   }
 
+  public Conta(int id, String chave, double saldo) throws Exception {
+    this(id, chave);
+
+    this.saldo = saldo;
+  }
+
   public void creditar(double valor) {
     saldo += valor;
   }
@@ -37,11 +43,11 @@ public class Conta {
     return id;
   }
 
-  public String getChavepiks() {
+  public String getChavePiks() {
     return chavepiks;
   }
 
-  public void setChavepiks(String chave) throws Exception {
+  public void setChavePiks(String chave) throws Exception {
 
     this.chavepiks = chave;
   }
@@ -76,7 +82,7 @@ public class Conta {
     lancamentos.add(lan);
   }
 
-  public void transferir(double valor, Conta conta) throws Exception {
+  public void transferir(Conta conta, double valor) throws Exception {
     if (conta == null)
       throw new Exception("Conta inválida");
 
