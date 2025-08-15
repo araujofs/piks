@@ -30,4 +30,11 @@ public class Lancamento {
   public String getTipo() {
     return tipo;
   }
+
+  @Override
+  public String toString() {
+    return "{datahora: " + datahora + ", valor: " + valor + ", tipo: " + tipo + "}";
+  }
+
+
 }

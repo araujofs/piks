@@ -89,4 +89,9 @@ public class Conta {
     this.debitar(valor);
     conta.creditar(valor);
   }
+
+  @Override
+  public String toString() {
+    return "{id: " + id + ", chavepiks: " + chavepiks + ", saldo: " + saldo + ", cpf: " + cliente.getCpf() + ", nome: " + cliente.getNome() + "}";
+  }
 }
