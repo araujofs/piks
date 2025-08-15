@@ -7,7 +7,7 @@ public class Lancamento {
   private double valor;
   private String tipo;
 
-  public Lancamento(double valor, String tipo) throws Exception {
+  public Lancamento(LocalDateTime datahora, double valor, String tipo) throws Exception {
     if (valor <= 0)
       throw new Exception("Valor do lançamento inválido: valor <= 0");
 
