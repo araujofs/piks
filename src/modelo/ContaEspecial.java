@@ -39,5 +39,10 @@ public class ContaEspecial extends Conta {
 
   public void setLimite(double limite) {
     this.limite = limite;
-  }  
+  }
+
+  @Override
+  public String toString() {
+    return "{id: " + getId() + ", chavepiks: " + getChavePiks() + ", saldo: " + getSaldo() + ", limite: " + limite + ", cpf: " + getCliente().getCpf() + ", nome: " + getCliente().getNome() + "}";
+  }
 }
