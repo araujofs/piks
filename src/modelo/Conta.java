@@ -29,15 +29,18 @@ public class Conta {
     this.saldo = saldo;
   }
 
-  public void creditar(double valor) {
+  public void creditar(double valor) throws Exception {
     saldo += valor;
+
+    lancamentos.add(new Lancamento(null, valor, "+"));
   }
 
   public void debitar(double valor) throws Exception {
-    if (saldo - valor < 0)
+    if ((saldo - valor) < 0)
       throw new Exception("Saldo insuficiente");
 
     saldo -= valor;
+    lancamentos.add(new Lancamento(null, valor, "-"));
   }
 
   public int getId() {
@@ -91,9 +94,6 @@ public class Conta {
 
     if (this.equals(conta))
       throw new Exception("Não pode transferir para a própria conta");
-
-    if ((saldo - valor) < 0)
-      throw new Exception("Valor inválido");
 
     this.debitar(valor);
     conta.creditar(valor);
