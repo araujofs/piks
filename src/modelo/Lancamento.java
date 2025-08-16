@@ -1,6 +1,7 @@
 package modelo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Lancamento {
   private LocalDateTime datahora;
@@ -33,8 +34,6 @@ public class Lancamento {
 
   @Override
   public String toString() {
-    return "{datahora: " + datahora + ", valor: " + valor + ", tipo: " + tipo + "}";
+    return "{datahora: " + datahora.format(DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss")) + ", valor: " + valor + ", tipo: " + tipo + "}";
   }
-
-
 }

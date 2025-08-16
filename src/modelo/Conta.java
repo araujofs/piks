@@ -7,6 +7,8 @@ package modelo;
 
 import java.util.ArrayList;
 
+import repositorio.Repositorio;
+
 public class Conta {
   private int id;
   private String chavepiks;
@@ -17,9 +19,8 @@ public class Conta {
   public Conta(int id, String chave) throws Exception {
     if (chave == null)
       throw new Exception("Chave piks necessária para criação de conta");
-
-    this.id = id;
-    this.chavepiks = chave;
+      
+    setChavePiks(chave);
   }
 
   public Conta(int id, String chave, double saldo) throws Exception {
@@ -28,15 +29,18 @@ public class Conta {
     this.saldo = saldo;
   }
 
-  public void creditar(double valor) {
+  public void creditar(double valor) throws Exception {
     saldo += valor;
+
+    lancamentos.add(new Lancamento(null, valor, "+"));
   }
 
   public void debitar(double valor) throws Exception {
-    if (saldo - valor < 0)
+    if ((saldo - valor) < 0)
       throw new Exception("Saldo insuficiente");
 
     saldo -= valor;
+    lancamentos.add(new Lancamento(null, valor, "-"));
   }
 
   public int getId() {
@@ -48,6 +52,8 @@ public class Conta {
   }
 
   public void setChavePiks(String chave) throws Exception {
+    if (Repositorio.localizarConta(chave) != null)
+      throw new Exception("Chave PIKS já registrada");
 
     this.chavepiks = chave;
   }
@@ -88,9 +94,6 @@ public class Conta {
 
     if (this.equals(conta))
       throw new Exception("Não pode transferir para a própria conta");
-
-    if ((saldo - valor) < 0)
-      throw new Exception("Valor inválido");
 
     this.debitar(valor);
     conta.creditar(valor);
