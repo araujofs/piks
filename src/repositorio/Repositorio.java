@@ -30,7 +30,10 @@ public class Repositorio {
     contasPIKS.put(c.getChavePiks(), c);
   }
 
-  public static void removerConta(Conta c) {
+  public static void removerConta(Conta c) throws Exception{
+    if (c.getSaldo() != 0)
+      throw new Exception("Conta com saldo diferente de zero não pode ser removida");
+
     contasPIKS.remove(c.getChavePiks());
   }
 
