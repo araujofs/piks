@@ -56,4 +56,18 @@ public class Cliente {
   public String toString() {
     return "{cpf:" + cpf + ", nome:" + nome + ", contaId:" + conta.getId() + "}";
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Cliente other = (Cliente) obj;
+    if (cpf != other.cpf)
+      return false;
+    return true;
+  }  
 }

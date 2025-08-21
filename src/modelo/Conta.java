@@ -33,7 +33,7 @@ public class Conta {
   public void creditar(double valor) throws Exception {
     saldo += valor;
 
-    lancamentos.add(new Lancamento(null, valor, "+"));
+    lancamentos.add(new Lancamento(valor, "+"));
   }
 
   public void debitar(double valor) throws Exception {
@@ -41,7 +41,7 @@ public class Conta {
       throw new Exception("Saldo insuficiente");
 
     saldo -= valor;
-    lancamentos.add(new Lancamento(null, valor, "-"));
+    lancamentos.add(new Lancamento(valor, "-"));
   }
 
   public int getId() {
@@ -73,9 +73,7 @@ public class Conta {
     return cliente;
   }
 
-  public void setCliente(Cliente cliente) throws Exception {
-    if (cliente == null)
-      throw new Exception("Cliente inválido");
+  public void setCliente(Cliente cliente) {
     this.cliente = cliente;
   }
 
@@ -103,5 +101,22 @@ public class Conta {
   @Override
   public String toString() {
     return "{id: " + id + ", chavepiks: " + chavepiks + ", saldo: " + saldo + ", cpf: " + cliente.getCpf() + ", nome: " + cliente.getNome() + "}";
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    Conta other = (Conta) obj;
+    if (chavepiks == null) {
+      if (other.chavepiks != null)
+        return false;
+    } else if (!chavepiks.equals(other.chavepiks))
+      return false;
+    return true;
   }
 }
