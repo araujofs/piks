@@ -24,13 +24,7 @@ public class ContaEspecial extends Conta {
     if ((getSaldo() + limite) < valor)
       throw new Exception("Saldo e/ou limite insuficiente");
 
-    double novoSaldo = getSaldo() - valor;
-
-    if (novoSaldo < 0) {
-      this.limite -= Math.abs(novoSaldo);
-      novoSaldo = 0;
-    }
-    setSaldo(novoSaldo);
+    setSaldo(getSaldo() - valor);
   }
 
   public double getLimite() {
