@@ -20,6 +20,10 @@ public class Lancamento {
     this.tipo = tipo;
   }
 
+  public Lancamento(double valor, String tipo) throws Exception {
+    this(null, valor, tipo);
+  }
+
   public LocalDateTime getDatahora() {
     return datahora;
   }
