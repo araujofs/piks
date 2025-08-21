@@ -20,6 +20,7 @@ public class Conta {
     if (chave == null)
       throw new Exception("Chave piks necessária para criação de conta");
       
+    this.id = id;
     setChavePiks(chave);
   }
 
