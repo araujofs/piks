@@ -64,8 +64,6 @@ public class Conta {
   }
 
   public void setSaldo(double saldo) throws Exception {
-    if (saldo < 0)
-      throw new Exception("Saldo inválido");
     this.saldo = saldo;
   }
 
@@ -120,3 +118,4 @@ public class Conta {
     return true;
   }
 }
+
